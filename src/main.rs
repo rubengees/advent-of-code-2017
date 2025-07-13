@@ -1,6 +1,6 @@
 use std::{env, fs, process};
 
-pub mod day1;
+mod day1;
 mod day2;
 
 fn main() {
