@@ -1,6 +1,7 @@
 use std::{env, fs, process};
 
 pub mod day1;
+mod day2;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -18,6 +19,7 @@ fn main() {
 
     let [part1, part2] = match day {
         1 => [day1::part1(contents), day1::part2(contents)],
+        2 => [day2::part1(contents), "Not implemented".into()],
         _ => {
             eprintln!("Day {} is not implemented yet", day);
             process::exit(1);
