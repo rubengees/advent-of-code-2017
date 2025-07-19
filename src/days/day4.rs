@@ -36,6 +36,10 @@ fn is_passphrase_valid_2(input: &str) -> bool {
     words_sorted.len() == unique_words.len()
 }
 
+pub fn run(input: &str) -> (String, String) {
+    (part1(input), part2(input))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

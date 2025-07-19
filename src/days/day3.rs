@@ -57,6 +57,10 @@ pub fn part2(input: &str) -> String {
     result.to_string()
 }
 
+pub fn run(input: &str) -> (String, String) {
+    (part1(input), part2(input))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
