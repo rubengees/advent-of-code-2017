@@ -1,23 +1,34 @@
 use crate::days::run_day;
-use std::{env, fs};
+use std::{env, fs, process};
 
 mod days;
 
 fn main() {
+    if let Err(e) = run() {
+        eprintln!("{e}");
+        process::exit(1);
+    }
+}
+
+fn run() -> Result<(), String> {
     let args: Vec<String> = env::args().collect();
 
     let day = args
         .get(1)
-        .expect("Please provide a day number as an argument")
+        .ok_or("Please provide a day number as an argument")?
         .parse::<i32>()
-        .expect("Must be a number");
+        .map_err(|_| "Day argument must be a valid number")?;
 
-    let contents = fs::read_to_string("input.txt").expect("Failed to read input.txt");
+    let contents =
+        fs::read_to_string("input.txt").map_err(|e| format!("Failed to read input.txt: {}", e))?;
+
     let contents = contents.trim();
 
     let (part1, part2) =
-        run_day(day, contents).expect(format!("Day {day} is not implemented yet").as_str());
+        run_day(day, contents).ok_or_else(|| format!("Day {} is not implemented yet", day))?;
 
     println!("Part 1: {}", part1);
     println!("Part 2: {}", part2);
+
+    Ok(())
 }
