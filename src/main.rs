@@ -21,7 +21,7 @@ fn main() {
     let [part1, part2] = match day {
         1 => [day1::part1(contents), day1::part2(contents)],
         2 => [day2::part1(contents), day2::part2(contents)],
-        3 => [day3::part1(contents), String::from("TODO")],
+        3 => [day3::part1(contents), day3::part2(contents)],
         _ => {
             eprintln!("Day {} is not implemented yet", day);
             process::exit(1);
