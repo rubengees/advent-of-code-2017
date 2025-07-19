@@ -20,15 +20,15 @@ fn run() -> Result<(), String> {
         .map_err(|_| "Day argument must be a valid number")?;
 
     let contents =
-        fs::read_to_string("input.txt").map_err(|e| format!("Failed to read input.txt: {}", e))?;
+        fs::read_to_string("input.txt").map_err(|e| format!("Failed to read input.txt: {e}"))?;
 
     let contents = contents.trim();
 
     let (part1, part2) =
-        run_day(day, contents).ok_or_else(|| format!("Day {} is not implemented yet", day))?;
+        run_day(day, contents).ok_or_else(|| format!("Day {day} is not implemented yet"))?;
 
-    println!("Part 1: {}", part1);
-    println!("Part 2: {}", part2);
+    println!("Part 1: {part1}");
+    println!("Part 2: {part2}");
 
     Ok(())
 }

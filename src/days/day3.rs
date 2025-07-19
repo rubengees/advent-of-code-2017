@@ -37,8 +37,8 @@ pub fn part2(input: &str) -> String {
             (1, 0) // Go right
         };
 
-        x = x + x_dir;
-        y = y + y_dir;
+        x += x_dir;
+        y += y_dir;
 
         // Find all neighbours of the new position and sum them up.
         let next_value = [-1, 0, 1]
