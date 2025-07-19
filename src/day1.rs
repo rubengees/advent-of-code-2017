@@ -1,8 +1,10 @@
+use itertools::Itertools;
+
 pub fn part1(input: &str) -> String {
-    let digits: Vec<u32> = input
+    let digits = input
         .chars()
         .map(|char| char.to_digit(10).expect("Not a number"))
-        .collect();
+        .collect_vec();
 
     let mut sum = 0;
 
@@ -20,10 +22,10 @@ pub fn part1(input: &str) -> String {
 }
 
 pub fn part2(input: &str) -> String {
-    let digits: Vec<u32> = input
+    let digits = input
         .chars()
         .map(|char| char.to_digit(10).expect("Not a number"))
-        .collect();
+        .collect_vec();
 
     let mut sum = 0;
 

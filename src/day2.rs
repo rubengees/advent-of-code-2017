@@ -4,10 +4,10 @@ pub fn part1(input: &str) -> String {
     let sum: i32 = input
         .lines()
         .map(|line| {
-            let numbers: Vec<i32> = line
+            let numbers = line
                 .split_whitespace()
                 .map(|num| num.parse().expect("Not a number"))
-                .collect();
+                .collect_vec();
 
             let min = numbers.iter().min().unwrap_or(&0);
             let max = numbers.iter().max().unwrap_or(&0);
@@ -23,10 +23,10 @@ pub fn part2(input: &str) -> String {
     let sum: i32 = input
         .lines()
         .map(|line| {
-            let numbers: Vec<i32> = line
+            let numbers = line
                 .split_whitespace()
-                .map(|num| num.parse().expect("Not a number"))
-                .collect();
+                .map(|num| num.parse::<i32>().expect("Not a number"))
+                .collect_vec();
 
             numbers
                 .iter()
