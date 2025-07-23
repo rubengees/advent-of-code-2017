@@ -1,5 +1,6 @@
 use itertools::Itertools;
 use regex::Regex;
+use std::cell::OnceCell;
 use std::collections::HashMap;
 use std::ops::Add;
 
@@ -95,6 +96,7 @@ fn build_tree_rec(parsed_nodes: &HashMap<String, ParsedNode>, name: &str) -> Nod
     Node {
         name: parsed_node.name.clone(),
         weight: parsed_node.weight,
+        total_weight: OnceCell::new(),
         children: parsed_node
             .children
             .iter()
@@ -107,19 +109,18 @@ struct Node {
     name: String,
     weight: u32,
     children: Vec<Node>,
+    total_weight: OnceCell<u32>,
 }
 
 impl Node {
     fn total_weight(&self) -> u32 {
-        if self.children.is_empty() {
-            return self.weight;
-        }
-
-        self.children
-            .iter()
-            .map(|child| child.total_weight())
-            .sum::<u32>()
-            .add(self.weight)
+        *self.total_weight.get_or_init(|| {
+            self.children
+                .iter()
+                .map(|child| child.total_weight())
+                .sum::<u32>()
+                .add(self.weight)
+        })
     }
 }
 
